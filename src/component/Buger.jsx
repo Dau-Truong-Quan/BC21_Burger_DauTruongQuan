@@ -18,18 +18,33 @@ class Buger extends Component {
 
   renderMenu = () => {
     // Lấy props từ redux về
-    let menu = this.props.menu;
+    let { menu, burger } = this.props;
     return Object.entries(menu).map(([propsMenu, price], index) => {
       return (
-        <div className="row my-3">
-          <tr key={index}>
-            <td>{propsMenu}</td>
-            <td>
-              <button className="btn-success">+</button>
-              <button className="btn-danger">-</button>
-            </td>
-            <td>{price}</td>
-          </tr>
+        <div className="row my-3 " key={index}>
+          <div className="col-4">{propsMenu}</div>
+          <div className="col-4">
+            <button
+              onClick={() => {
+                this.props.addBreadMid(propsMenu, -1);
+              }}
+              type="button"
+              class="btn btn-danger"
+            >
+              -
+            </button>
+            {burger[propsMenu]}
+            <button
+              onClick={() => {
+                this.props.addBreadMid(propsMenu, 1);
+              }}
+              type="button"
+              class="btn btn-success"
+            >
+              +
+            </button>
+          </div>
+          <div className="col-4">{price}</div>
         </div>
       );
     });
@@ -93,7 +108,7 @@ class Buger extends Component {
             <div className="row d-flex justify-content-end">
               <div className="col-12">{this.renderMenu()}</div>
               <div className="col-4">tổng tiền: </div>
-              <div className="col-4">100</div>
+              <div className="col-4">{this.props.total}</div>
             </div>
           </div>
         </div>
@@ -101,6 +116,20 @@ class Buger extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addBreadMid: (propsBurger, amount) => {
+      // Tạo ra action
+      const action = {
+        type: "ADD_BREADMID",
+        propsBurger,
+        amount,
+      };
+      dispatch(action);
+    },
+  };
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -110,4 +139,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Buger);
+export default connect(mapStateToProps, mapDispatchToProps)(Buger);
