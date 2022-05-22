@@ -1,0 +1,45 @@
+
+.breadTop{
+    height: 100px;
+    width: 300px;
+    content: "";
+    background-color: orange;
+    border-start-end-radius: 35%;
+    border-top-left-radius: 35%;
+    margin: auto;
+    
+}
+.salad {
+    height: 10px;
+    width: 400px;
+    background-color: greenyellow;
+    border-radius: 10px;
+    margin: 10px auto;
+   
+}
+
+.cheese{
+    height: 30px;
+    width: 350px;
+    background-color: yellow;
+    border-radius: 20px;
+    margin: 10px auto;
+}
+.beef{
+    height: 40px;
+    width: 350px;
+    background-color: brown;
+    margin: 10px auto;
+   border-radius: 10px;
+
+}
+.breadBottom{
+    height: 100px;
+    width: 300px;
+    content: "";
+    background-color: orange;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin: auto;
+}
+ 
